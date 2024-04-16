@@ -6,7 +6,6 @@ Michi:
 
 Dennis:
 1-header
-2-kontodarstellung (Home)
 
 Module:
 1-header
