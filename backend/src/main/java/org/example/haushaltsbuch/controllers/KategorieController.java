@@ -11,7 +11,8 @@ import static org.springframework.http.ResponseEntity.badRequest;
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
-@RequestMapping("kategorie")
+@RequestMapping("category")
+@CrossOrigin("http://localhost:4200")
 public class KategorieController {
 
   private final KategorieService kategorieService;

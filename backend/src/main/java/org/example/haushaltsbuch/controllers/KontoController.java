@@ -11,7 +11,8 @@ import static org.springframework.http.ResponseEntity.badRequest;
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
-@RequestMapping("konto")
+@RequestMapping("account")
+@CrossOrigin("http://localhost:4200")
 public class KontoController {
 
     private KontoService kontoService;

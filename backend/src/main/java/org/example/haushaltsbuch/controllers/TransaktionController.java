@@ -11,7 +11,8 @@ import static org.springframework.http.ResponseEntity.badRequest;
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
-@RequestMapping("transaktionen")
+@RequestMapping("transaction")
+@CrossOrigin("http://localhost:4200")
 public class TransaktionController {
 
   private final TransaktionService transaktionService;
