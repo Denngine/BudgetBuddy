@@ -21,8 +21,7 @@ public class TransaktionController {
   }
 
   @GetMapping
-  public ResponseEntity<List<Transaktion>>
-  findAllTransaktion() {
+  public ResponseEntity<List<Transaktion>> findAllTransaktion() {
     return ok(transaktionService.findAll());
   }
 

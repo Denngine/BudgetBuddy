@@ -31,7 +31,7 @@ public class KategorieController {
   }
 
   @PostMapping
-  public ResponseEntity<Kategorie> createCourse(@RequestBody Kategorie kategorie) {
+  public ResponseEntity<Kategorie> createKategorie(@RequestBody Kategorie kategorie) {
     if(kategorie.getId() != null) {
       return badRequest().build();
     }
