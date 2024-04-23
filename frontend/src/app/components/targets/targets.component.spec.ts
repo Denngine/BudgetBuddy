@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MenatsTabelleComponent } from './menats-tabelle.component';
+import { TargetsComponent } from './targets.component';
 
-describe('MenatsTabelleComponent', () => {
-  let component: MenatsTabelleComponent;
-  let fixture: ComponentFixture<MenatsTabelleComponent>;
+describe('TargetsComponent', () => {
+  let component: TargetsComponent;
+  let fixture: ComponentFixture<TargetsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [MenatsTabelleComponent]
+      declarations: [TargetsComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(MenatsTabelleComponent);
+    fixture = TestBed.createComponent(TargetsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
