@@ -40,7 +40,7 @@ public class AccountController {
     }
 
     @PutMapping
-    public ResponseEntity<Account> updateKonto(@RequestBody Account account) {
+    public ResponseEntity<Account> updateAccount(@RequestBody Account account) {
       if(account.getId() == null) {
         return badRequest().build();
       }
@@ -48,7 +48,7 @@ public class AccountController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteKonto(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteAccount(@PathVariable Long id) {
       accountService.delete(id);
       return ok().build();
     }
