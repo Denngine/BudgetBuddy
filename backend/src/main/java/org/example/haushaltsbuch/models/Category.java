@@ -12,14 +12,14 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Kategorie {
+public class Category {
     @Id
     @GeneratedValue
     private Long id;
 
     private String name;
 
-    @OneToMany(mappedBy = "kategorie")
-    @JsonIgnoreProperties({"konto", "kategorie"})
-    private List<Transaktion> transaktionen;
+    @OneToMany(mappedBy = "category")
+    @JsonIgnoreProperties({"account", "category"})
+    private List<Transaction> transactions;
 }
