@@ -1,7 +1,21 @@
-<nav>
-  <button routerLink="/home">Home</button>
-  <button routerLink="/overview">Übersicht</button>
-  <button routerLink="/transactions">Transaktionen</button>
-  <button routerLink="/targets">Ziele</button>
-</nav>
+<header>
+  <div class="logo">
+    <img src="assets/img/logo.png" alt="Logo">
+  </div>
+  <nav>
+    <button routerLink="/home">Home</button>
+    <button routerLink="/overview">Übersicht</button>
+    <button routerLink="/transactions">Transaktionen</button>
+    <button routerLink="/targets">Ziele</button>
+  </nav>
+  <div class="info">
+    <span>{{ balance }}</span>
+  </div>
+  <div class="dropdown">
+    <button class="dropbtn">{{ dropdownOptions[kontoId] }}</button>
+    <div class="dropdown-content">
+      <a *ngFor="let option of dropdownOptions" (mousedown)="selectOption(option)">{{ option }}</a>
+    </div>
+  </div>
+</header>
 
