@@ -13,21 +13,21 @@ import java.util.Date;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Transaktion {
+public class Transaction {
     @Id
     @GeneratedValue
     private Long id;
 
     private Date date;
-    private BigDecimal betrag;
-    private String beschreibung;
-    private boolean wiederkehrend;
+    private BigDecimal amount;
+    private String description;
+    private boolean recurring;
 
     @ManyToOne
-    @JsonIgnoreProperties("transaktionen")
-    private Kategorie kategorie;
+    @JsonIgnoreProperties("transaktions")
+    private Category category;
 
     @ManyToOne
-    @JsonIgnoreProperties("transaktionen")
-    private Konto konto;
+    @JsonIgnoreProperties("transaktions")
+    private Account account;
 }

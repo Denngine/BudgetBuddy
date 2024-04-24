@@ -16,18 +16,18 @@ export class TransactionService {
   }
 
   getTransactionById(id: number): Observable<Transaction> {
-    return this.httpClient.get<Transaction>(`${this.baseUrl}/${id}`)
+    return this.httpClient.get<Transaction>(`${this.baseUrl}${id}`)
   }
 
   createTransaction(transaction: Transaction): Observable<Transaction> {
-    return this.httpClient.post<Transaction>(`${this.baseUrl}/`, transaction)
+    return this.httpClient.post<Transaction>(`${this.baseUrl}`, transaction)
   }
 
   updateTransaction(transaction: Transaction): Observable<Transaction> {
-    return this.httpClient.put<Transaction>(`${this.baseUrl}/`, transaction)
+    return this.httpClient.put<Transaction>(`${this.baseUrl}`, transaction)
   }
 
   deleteTransaction(id: number): Observable<void> {
-    return this.httpClient.delete<void>(`${this.baseUrl}/${id}`)
+    return this.httpClient.delete<void>(`${this.baseUrl}${id}`)
   }
 }

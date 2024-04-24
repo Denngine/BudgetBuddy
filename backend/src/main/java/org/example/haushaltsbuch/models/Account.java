@@ -13,15 +13,15 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Konto {
+public class Account {
     @Id
     @GeneratedValue
     private Long id;
 
     private String name;
-    private BigDecimal kontostand;
+    private BigDecimal account;
 
-    @OneToMany(mappedBy = "konto")
-    @JsonIgnoreProperties({"konto", "kategorie"})
-    private List<Transaktion> transaktionen;
+    @OneToMany(mappedBy = "account")
+    @JsonIgnoreProperties({"account", "category"})
+    private List<Transaction> transactions;
 }

@@ -16,7 +16,7 @@ export class AccountService {
   }
 
   getAccountById(id: number): Observable<Account> {
-    return this.httpClient.get<Account>(`${this.baseUrl}/${id}`)
+    return this.httpClient.get<Account>(`${this.baseUrl}${id}`)
   }
 
   createAccount(account: Account): Observable<Account> {
@@ -28,6 +28,6 @@ export class AccountService {
   }
 
   deleteAccount(id: number): Observable<void> {
-    return this.httpClient.delete<void>(`${this.baseUrl}/${id}`)
+    return this.httpClient.delete<void>(`${this.baseUrl}${id}`)
   }
 }
