@@ -1,0 +1,10 @@
+INSERT INTO Account (id, name, account) VALUES (1001,'Girokonto', 1500.00);
+INSERT INTO Account (id,name, account) VALUES (1002,'Sparkonto', 5000.00);
+INSERT INTO Account (id,name, account) VALUES (1003,'Investmentkonto', 10000.00);
+INSERT INTO Category (id, name) VALUES (1001,'Lebensmittel');
+INSERT INTO Category (id,name) VALUES (1002,'Transport');
+INSERT INTO Category (id,name) VALUES (1003,'Unterhaltung');
+INSERT INTO Transaction (id,date, amount, description, recurring, category_id, account_id) VALUES (1001,'2024-04-20', -50.00, 'Wochenendeinkauf', false, 1001, 1001);
+INSERT INTO Transaction (id,date, amount, description, recurring, category_id, account_id) VALUES (1002,'2024-04-21', -30.00, 'Tanken', false, 1002, 1001);
+INSERT INTO Transaction (id,date, amount, description, recurring, category_id, account_id) VALUES (1003,'2024-04-22', -20.00, 'Kino', false, 1003, 1001);
+INSERT INTO Transaction (id,date, amount, description, recurring, category_id, account_id) VALUES (1004,'2024-04-23', 100.00, 'Gehaltseingang', false, 1003, 1001);
