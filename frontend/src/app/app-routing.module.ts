@@ -6,11 +6,11 @@ import {TransactionsComponent} from "./components/transactions/transactions.comp
 import {TargetsComponent} from "./components/targets/targets.component";
 
 const routes: Routes = [
-  {path:"", redirectTo:"home", pathMatch:"full"},
-  {path:"home", component: HomeComponent},
-  {path:"overview", component: OverviewComponent},
-  {path:"transactions", component: TransactionsComponent},
-  {path:"targets", component: TargetsComponent}
+  {path:"", redirectTo:"home/-1", pathMatch:"full"},
+  {path:"home/:id", component: HomeComponent},
+  {path:"overview/:id", component: OverviewComponent},
+  {path:"transactions/:id", component: TransactionsComponent},
+  {path:"targets/:id", component: TargetsComponent}
 ];
 
 @NgModule({

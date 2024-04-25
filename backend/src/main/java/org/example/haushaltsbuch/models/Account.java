@@ -19,7 +19,7 @@ public class Account {
     private Long id;
 
     private String name;
-    private BigDecimal account;
+    private BigDecimal balance;
 
     @OneToMany(mappedBy = "account")
     @JsonIgnoreProperties({"account", "category"})

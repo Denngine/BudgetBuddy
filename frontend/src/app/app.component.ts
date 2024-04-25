@@ -8,8 +8,9 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'haushaltsbuch';
 
-  kontoId: number = 0;
-  editKontoId(id: number) {
-    this.kontoId = id;
+  accountIndex: number = -1;
+
+  editAccountIndex(index: number) {
+    this.accountIndex = index;
   }
 }
