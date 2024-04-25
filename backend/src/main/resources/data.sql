@@ -1,6 +1,6 @@
-INSERT INTO Account (id, name, account) VALUES (1001,'Girokonto', 1500.00);
-INSERT INTO Account (id,name, account) VALUES (1002,'Sparkonto', 5000.00);
-INSERT INTO Account (id,name, account) VALUES (1003,'Investmentkonto', 10000.00);
+INSERT INTO Account (id, name, balance) VALUES (1001,'Girokonto', 1500.00);
+INSERT INTO Account (id,name, balance) VALUES (1002,'Sparkonto', 5000.00);
+INSERT INTO Account (id,name, balance) VALUES (1003,'Investmentkonto', 10000.00);
 INSERT INTO Category (id, name) VALUES (1001,'Lebensmittel');
 INSERT INTO Category (id,name) VALUES (1002,'Transport');
 INSERT INTO Category (id,name) VALUES (1003,'Unterhaltung');

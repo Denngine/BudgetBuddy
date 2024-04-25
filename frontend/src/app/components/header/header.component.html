@@ -3,19 +3,21 @@
     <img src="assets/img/logo.png" alt="Logo">
   </div>
   <nav>
-    <button routerLink="/home">Home</button>
-    <button routerLink="/overview">Übersicht</button>
-    <button routerLink="/transactions">Transaktionen</button>
-    <button routerLink="/targets">Ziele</button>
+    <button [routerLink]="['/home', accountIndex]">Home</button>
+    <button [routerLink]="['/overview', accountIndex]">Übersicht</button>
+    <button [routerLink]="['/transactions', accountIndex]">Transaktionen</button>
+    <button [routerLink]="['/targets', accountIndex]">Ziele</button>
   </nav>
   <div class="info">
     <span>{{ balance }}</span>
   </div>
   <div class="dropdown">
-    <button class="dropbtn">{{ dropdownOptions[kontoId] }}</button>
+    <button class="dropbtn">
+      {{ accountIndex === -1 ? 'Gesamtübersicht' : accounts[accountIndex].name }}
+    </button>
     <div class="dropdown-content">
-      <a *ngFor="let option of dropdownOptions" (mousedown)="selectOption(option)">{{ option }}</a>
+      <a (click)="selectAccount(null)">Gesamtübersicht</a>
+      <a *ngFor="let account of accounts" (click)="selectAccount(account)">{{ account.name }}</a>
     </div>
   </div>
 </header>
-
