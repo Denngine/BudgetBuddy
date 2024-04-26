@@ -1,1 +1,41 @@
-Home geht doch nicht
+<div class="container">
+  <div class="header">{{ accountIndex === -1 ? 'Gesamtübersicht' : accounts[accountIndex].name  }}</div>
+  <div class="content">
+    <div class="balance">Summe: <!--{{ balance }}--></div>
+    <div class="current">Aktuell</div>
+  </div>
+</div>
+
+<br>
+
+<div *ngFor="let account of accounts">
+  ID: {{ account.id }}<br>
+  Acc Name: {{account.name}}<br>
+  Acc Balance: {{ account.balance }}<br><br>
+</div>
+<br>
+<label for="table">aktueller Monat Einnahmen/Ausgaben</label>
+<div class="table">
+  <table id="table">
+    <thead>
+    <tr>
+      <th>Datum</th>
+      <th>Betrag</th>
+      <th>Kategorie</th>
+      <th>Beschreibung</th>
+      <th>Wiederkehrend</th>
+      <th>Konto</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let transaction of transactions">
+      <td>{{ transaction.date }}</td>
+      <td>{{ transaction.amount }}</td>
+      <td>{{ transaction.category.name }}</td>
+      <td>{{ transaction.description }}</td>
+      <td>{{ transaction.recurring ? 'Ja' : 'Nein' }}</td>
+      <td>{{ transaction.account.name }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
