@@ -1,1 +1,1 @@
-<p>{{ accountId === -1 ? 'Gesamtübersicht' : getAccountById(accountId)!.name }}</p>
+<p>{{ accountId === -1 ? 'Gesamtübersicht' : (getAccountById(accountId)?.name || '') }}</p>

@@ -49,7 +49,7 @@ export class HomeComponent {
         balance += account.balance;
       }
     } else {                             //kontostand für das ausgewählte Konto
-      balance = this.getAccountById(this.accountId)!.balance;
+      balance = (this.getAccountById(this.accountId)?.balance) ?? 0;
     }
     return balance;
   }

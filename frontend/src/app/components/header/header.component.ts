@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Account } from '../../models/account';
 import { AccountService } from '../../services/account/account.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { UpdateService } from '../../services/update/update.service';
 
 
@@ -63,7 +63,7 @@ export class HeaderComponent {
         this.balance += account.balance;
       }
     } else {                             //kontostand für das ausgewählte Konto
-      this.balance = this.getAccountById(id)!.balance;
+      this.balance = (this.getAccountById(id)?.balance) ?? 0;
     }
   }
 

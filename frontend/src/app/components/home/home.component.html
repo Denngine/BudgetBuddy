@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="header">{{ accountId === -1 ? 'Gesamtübersicht' : getAccountById(accountId)!.name  }}</div>
+  <div class="header">{{ accountId === -1 ? 'Gesamtübersicht' : (getAccountById(accountId)?.name || '') }}</div>
   <div class="content">
     <div class="balance">Summe: {{ calculateBalance() }}</div>
     <div class="current">Aktuell</div>
