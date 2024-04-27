@@ -3,12 +3,13 @@
   flex-direction: column;
   width: 300px; /* Anpassen nach Bedarf */
   border: 1px solid #ccc;
+  margin-top: 10px;
 }
 
 .header {
   flex: 1; /* Nimmt 1 Teil der verfügbaren Höhe ein */
   text-align: center;
-  background-color: #f0f0f0;
+  background-color: #00A4D3  /*#f0f0f0*/;
   padding: 10px;
 }
 
@@ -17,6 +18,7 @@
   display: flex;
   flex-direction: column;
   padding: 10px;
+  text-align: center;
 }
 
 .balance {
@@ -28,13 +30,22 @@
   font-style: italic;
 }
 
+container-table {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 table {
   width: 80%; /* Optionale Breite für die Tabelle */
   border-collapse: collapse; /* Interne Ränder entfernen */
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
 }
 
 thead {
-  background-color: #007bff; /* Blauer Hintergrund für den Tablehead */
+  background-color: #00A4D3; /* Blauer Hintergrund für den Tablehead */
   color: white; /* Weiße Schriftfarbe für den Tablehead */
   text-align: center; /* Text zentrieren */
   font-weight: bold; /* Fettschrift für den Tablehead */
