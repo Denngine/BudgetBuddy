@@ -7,6 +7,7 @@ import { Transaction } from '../../models/transaction';
 import { CategoryService } from '../../services/category/category.service';
 import { Category } from '../../models/category';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { UpdateService } from '../../services/update/update.service';
 
 @Component({
   selector: 'app-transactions',
@@ -14,19 +15,22 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrl: './transactions.component.scss'
 })
 export class TransactionsComponent {
-  accountIndex: number = -1;
+  accountId: number = -1;
   accounts: Account[] = [];
   transactions: Transaction[] = [];
   categories: Category[] = [];
   formGroup: FormGroup;
   selectedCategories: Category[] = [];
+  selectedAccounts: Account[] = [];
   showCategoryDropdown: boolean = false;
+  showAccountDropdown: boolean = false;
   filteredTransactions: Transaction[] = [];
 
   constructor(
     private accountService: AccountService,
     private transactionService: TransactionService,
     private categoryService: CategoryService,
+    private updateService: UpdateService,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder
   ) {
@@ -45,7 +49,8 @@ export class TransactionsComponent {
     this.loadContent();
 
     this.route.params.subscribe(params => {
-      this.accountIndex = +params['id'];
+      this.accountId = +params['id'];
+      this.updateService.setAccountId(+params['id']);
     })
     if(this.filteredTransactions.length === 0){
       this.filteredTransactions = this.transactions;
@@ -70,6 +75,15 @@ export class TransactionsComponent {
       this.selectedCategories.push(category);
     } else {
       this.selectedCategories.splice(index, 1);
+    }
+  }
+
+  addAccount(account: Account) {
+    const index = this.selectedAccounts.findIndex(selectedAccount => selectedAccount.id === account.id);
+    if (index === -1) {
+      this.selectedAccounts.push(account);
+    } else {
+      this.selectedAccounts.splice(index, 1);
     }
   }
 
@@ -107,8 +121,12 @@ export class TransactionsComponent {
         result = false;
       }
 
-      if (this.selectedCategories.length > 0 && !this.selectedCategories.map(category => category.name).includes(transaction.category.name)) {
-        return false;
+      if (this.selectedCategories.length > 0 && !this.selectedCategories.map(category => category.id).includes(transaction.category.id)) {
+        result = false;
+      }
+
+      if (this.selectedAccounts.length > 0 && !this.selectedAccounts.map(account => account.id).includes(transaction.account.id)) {
+        result = false;
       }
 
       return result;
@@ -117,6 +135,10 @@ export class TransactionsComponent {
 
   categoryDropdown(): void {
     this.showCategoryDropdown = !this.showCategoryDropdown;
+  }
+
+  accountDropdown(): void {
+    this.showAccountDropdown = !this.showAccountDropdown;
   }
 
   sorted = { isSorted: false, attribute: "" };
@@ -131,6 +153,7 @@ export class TransactionsComponent {
         this.sorted.isSorted = !this.sorted.isSorted;
         this.sorted.attribute = 'date';
         break;
+
       case 'amount':
         if (this.sorted.isSorted && this.sorted.attribute === 'amount'){
           this.filteredTransactions.sort((a, b) => a.amount - b.amount);
@@ -140,6 +163,7 @@ export class TransactionsComponent {
         this.sorted.isSorted = !this.sorted.isSorted;
         this.sorted.attribute = 'amount';
         break;
+
       case 'description':
         if (this.sorted.isSorted && this.sorted.attribute === 'description'){
           this.filteredTransactions.sort((a, b) => b.description.localeCompare(a.description));
@@ -171,18 +195,18 @@ export class TransactionsComponent {
         break;
 
       case 'account':
-        if (this.accountIndex === -1) {
-          if (this.sorted.isSorted && this.sorted.attribute === 'account'){
-            this.filteredTransactions.sort((a, b) => b.account.name.localeCompare(a.account.name));
-          } else {
-            this.filteredTransactions.sort((a, b) => a.account.name.localeCompare(b.account.name));
-          }
-          this.sorted.isSorted = !this.sorted.isSorted;
-          this.sorted.attribute = 'account';
+        if (this.sorted.isSorted && this.sorted.attribute === 'account'){
+          this.filteredTransactions.sort((a, b) => b.account.name.localeCompare(a.account.name));
+        } else {
+          this.filteredTransactions.sort((a, b) => a.account.name.localeCompare(b.account.name));
         }
+        this.sorted.isSorted = !this.sorted.isSorted;
+        this.sorted.attribute = 'account';
         break;
+
       default:
         break;
     }
   }
 }
+

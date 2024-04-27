@@ -1,7 +1,8 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { Account } from '../../models/account';
 import { AccountService } from '../../services/account/account.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UpdateService } from '../../services/update/update.service';
 
 
 @Component({
@@ -12,46 +13,66 @@ import { Router } from '@angular/router';
 export class HeaderComponent {
   accounts: Account[] = [];
   balance: number = 0;
+  accountId: number = -1;
 
-  @Input() accountIndex!: number;
-  @Output() selectAccountIndex = new EventEmitter<number>();
-
-  constructor(private accountService: AccountService, private router: Router){}
-
-  selectAccount(selected: Account | null): void {
-    let newIndex: number;                //anstelle von [accountIndex] für besser performance
-    if (selected === null) {
-      this.selectAccountIndex.emit(-1);
-      newIndex = -1;                     //index für Gesamtübersicht
-    } else {
-      newIndex = this.accounts.indexOf(selected);
-      this.selectAccountIndex.emit(newIndex);
-    }
-    this.calculateBalance(newIndex);     //bessere Performance mit [newIndex]
-
-    //lädt die navigierte route neu
-    let activeRoute: string = this.router.url.split('/')[1];
-    this.router.navigate(["/", activeRoute, newIndex]);
-  }
+  constructor(
+    private accountService: AccountService,
+    private router: Router,
+    private updateService: UpdateService
+  ){}
 
   ngOnInit(): void {
     this.loadAccounts();
-    this.calculateBalance(this.accountIndex);
+    this.updateService.getAccountIdObservable().subscribe(id => {
+      this.accountId = id;
+      this.calculateBalance(id);
+    });
+  }
+
+  selectAccount(selected: Account | null): void {
+    let newId: number;                //anstelle von [accountIndex] für besser performance
+
+    if (selected === null) {
+      newId = -1;                     //index für Gesamtübersicht
+    } else if (selected.id !== undefined) {
+      newId = selected.id;            //this.accounts.indexOf(selected);
+    } else {
+      newId = -1;
+    }
+
+    this.calculateBalance(newId);     //bessere Performance mit [newIndex]
+
+    //lädt die navigierte route neu
+    let activeRoute: string = this.router.url.split('/')[1];
+    this.router.navigate(["/", activeRoute, newId]);
   }
 
   loadAccounts(){
     this.accountService.getAll().subscribe(
-      (data => this.accounts = data))
+      (data => {
+        this.accounts = data || [];
+        this.calculateBalance(this.accountId);
+      })
+    );
   }
 
-  calculateBalance(index: number){
-    if (index === -1){                   //kontostand für Gesamtübersicht
+  calculateBalance(id: number) {
+    if (id === -1){                   //kontostand für Gesamtübersicht
       this.balance = 0;
       for(let account of this.accounts){
         this.balance += account.balance;
       }
     } else {                             //kontostand für das ausgewählte Konto
-      this.balance = this.accounts[index].balance;
+      this.balance = this.getAccountById(id)!.balance;
     }
+  }
+
+  getAccountById(id: number): Account | null {
+    for(let account of this.accounts){
+      if (id == account.id){
+        return account;
+      }
+    }
+    return null;
   }
 }

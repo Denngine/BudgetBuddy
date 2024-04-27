@@ -3,17 +3,17 @@
     <img src="assets/img/logo.png" alt="Logo">
   </div>
   <nav>
-    <button [routerLink]="['/home', accountIndex]">Home</button>
-    <button [routerLink]="['/overview', accountIndex]">Übersicht</button>
-    <button [routerLink]="['/transactions', accountIndex]">Transaktionen</button>
-    <button [routerLink]="['/targets', accountIndex]">Ziele</button>
+    <button [routerLink]="['/home', accountId]">Home</button>
+    <button [routerLink]="['/overview', accountId]">Übersicht</button>
+    <button [routerLink]="['/transactions', accountId]">Transaktionen</button>
+    <button [routerLink]="['/targets', accountId]">Ziele</button>
   </nav>
   <div class="info">
     <span>{{ balance }}</span>
   </div>
   <div class="dropdown">
     <button class="dropbtn">
-      {{ accountIndex === -1 ? 'Gesamtübersicht' : accounts[accountIndex].name }}
+      {{ accountId === -1 ? 'Gesamtübersicht' : getAccountById(accountId)!.name }}
     </button>
     <div class="dropdown-content">
       <a (click)="selectAccount(null)">Gesamtübersicht</a>
