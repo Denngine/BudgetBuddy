@@ -7,7 +7,7 @@
         <th (click)="sortBy('description')">Beschreibung</th>
         <th (click)="sortBy('recurring')">Wiederkehrend</th>
         <th (click)="sortBy('category')">Kategorie</th>
-        <th *ngIf="accountIndex === -1" (click)="sortBy('account')">Konto</th>
+        <th (click)="sortBy('account')">Konto</th>
       </tr>
     </thead>
     <tbody>
@@ -17,7 +17,7 @@
         <td>{{ transaction.description }}</td>
         <td>{{ transaction.recurring ? 'Ja' : 'Nein' }}</td>
         <td>{{ transaction.category.name }}</td>
-        <td *ngIf="accountIndex === -1">{{ transaction.account.name }}</td>
+        <td>{{ transaction.account.name }}</td>
       </tr>
     </tbody>
   </table>
@@ -55,6 +55,18 @@
           <div *ngFor="let category of categories">
             <input type="checkbox" [value]="category" (change)="addCategory(category)">
             {{ category.name }} <br>
+          </div>
+        </div>
+      </div><br>
+
+      <div class="filter-dropdown" [class.hide-dropdown]="!showAccountDropdown">
+        <button type="button" (click)="accountDropdown()">
+          {{  showAccountDropdown ? 'Konten verbergen' : 'Konten anzeigen' }}
+        </button><br>
+        <div *ngIf="showAccountDropdown">
+          <div *ngFor="let account of accounts">
+            <input type="checkbox" [value]="account" (change)="addAccount(account)">
+            {{ account.name }} <br>
           </div>
         </div>
       </div><br><br>
