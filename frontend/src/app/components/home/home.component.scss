@@ -1,4 +1,4 @@
-.container {
+.container-kontoanzeige {
   display: flex;
   flex-direction: column;
   width: 300px; /* Anpassen nach Bedarf */
@@ -6,11 +6,13 @@
   margin-top: 10px;
 }
 
-.header {
+.header-kontoanzeige {
   flex: 1; /* Nimmt 1 Teil der verfügbaren Höhe ein */
   text-align: center;
   background-color: #00A4D3  /*#f0f0f0*/;
   padding: 10px;
+  color: white;
+  font-weight: bold;
 }
 
 .content {
