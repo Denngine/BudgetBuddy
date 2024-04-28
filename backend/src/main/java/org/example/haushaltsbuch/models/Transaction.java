@@ -2,6 +2,8 @@ package org.example.haushaltsbuch.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,9 +20,16 @@ public class Transaction {
     @GeneratedValue
     private Long id;
 
+    @NotNull
     private Date date;
+
+    @NotNull
     private BigDecimal amount;
+
+    @NotBlank
     private String description;
+
+    @NotBlank
     private boolean recurring;
 
     @ManyToOne

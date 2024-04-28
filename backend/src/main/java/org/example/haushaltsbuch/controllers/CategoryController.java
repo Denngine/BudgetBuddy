@@ -3,6 +3,7 @@ package org.example.haushaltsbuch.controllers;
 import org.example.haushaltsbuch.models.Category;
 import org.example.haushaltsbuch.services.CategoryService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,7 +33,7 @@ public class CategoryController {
   }
 
   @PostMapping
-  public ResponseEntity<Category> createCategory(@RequestBody Category category) {
+  public ResponseEntity<Category> createCategory(@Validated @RequestBody Category category) {
     if(category.getId() != null) {
       return badRequest().build();
     }
@@ -40,7 +41,7 @@ public class CategoryController {
   }
 
   @PutMapping
-  public ResponseEntity<Category> updateCategory(@RequestBody Category category) {
+  public ResponseEntity<Category> updateCategory(@Validated @RequestBody Category category) {
     if(category.getId() == null) {
       return badRequest().build();
     }

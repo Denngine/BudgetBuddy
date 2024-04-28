@@ -14,14 +14,22 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Account {
-    @Id
-    @GeneratedValue
-    private Long id;
+  @Id
+  @GeneratedValue
+  private Long id;
 
-    private String name;
-    private BigDecimal balance;
+  private String name;
+  private BigDecimal balance;
 
-    @OneToMany(mappedBy = "account")
-    @JsonIgnoreProperties({"account", "category"})
-    private List<Transaction> transactions;
+  @OneToMany(mappedBy = "account")
+  @JsonIgnoreProperties({"account", "category"})
+  private List<Transaction> transactions;
+
+  @OneToMany(mappedBy = "account")
+  @JsonIgnoreProperties({"account"})
+  private List<Dept> depts;
+
+  @OneToMany(mappedBy = "account")
+  @JsonIgnoreProperties({"account"})
+  private List<Target> targets;
 }

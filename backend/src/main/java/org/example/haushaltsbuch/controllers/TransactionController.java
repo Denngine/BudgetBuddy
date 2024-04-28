@@ -3,6 +3,7 @@ package org.example.haushaltsbuch.controllers;
 import org.example.haushaltsbuch.models.Transaction;
 import org.example.haushaltsbuch.services.TransactionService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class TransactionController {
 
   @GetMapping
   public ResponseEntity<List<Transaction>> findAllTransactions() {
-    return ok(transactionService.findAll());
+    return ResponseEntity.ok(transactionService.findAll());
   }
 
   @GetMapping("/{id}")
@@ -32,7 +33,7 @@ public class TransactionController {
   }
 
   @PostMapping
-  public ResponseEntity<Transaction> createTransaction(@RequestBody Transaction transaction) {
+  public ResponseEntity<Transaction> createTransaction(@Validated @RequestBody Transaction transaction) {
     if(transaction.getId() != null) {
       return badRequest().build();
     }
@@ -40,7 +41,7 @@ public class TransactionController {
   }
 
   @PutMapping
-  public ResponseEntity<Transaction> updateTransaction(@RequestBody Transaction transaction) {
+  public ResponseEntity<Transaction> updateTransaction(@Validated @RequestBody Transaction transaction) {
     if(transaction.getId() == null) {
       return badRequest().build();
     }
