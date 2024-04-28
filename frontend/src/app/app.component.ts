@@ -7,10 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'haushaltsbuch';
-
-  accountIndex: number = -1;
-
-  editAccountIndex(index: number) {
-    this.accountIndex = index;
-  }
 }

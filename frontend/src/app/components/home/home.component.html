@@ -1,1 +1,50 @@
-Home geht doch nicht
+<div class="container-kontoanzeige">
+  <div class="header-kontoanzeige">{{ accountId === -1 ? 'Gesamtübersicht' : (getAccountById(accountId)?.name || '') }}</div>
+  <div class="content">
+    <div class="balance">Summe: {{ calculateBalance() }}</div>
+    <div class="current">Aktuell</div>
+  </div>
+</div>
+
+<br>
+
+<div *ngFor="let account of accounts">
+  ID: {{ account.id }}<br>
+  Acc Name: {{account.name}}<br>
+  Acc Balance: {{ account.balance }}<br><br>
+</div>
+<br>
+<div class="container-table">
+  <label id="lable-table" for="table">aktueller Monat Einnahmen/Ausgaben</label>
+  <div class="table">
+    <table id="table">
+      <thead>
+      <tr>
+        <th>Datum</th>
+        <th>Betrag</th>
+        <th>Kategorie</th>
+        <th>Beschreibung</th>
+        <th>Wiederkehrend</th>
+        <th>Konto</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let transaction of filteredTransactions">
+        <td>{{ transaction.date }}</td>
+        <td>{{ transaction.amount }}</td>
+        <td>{{ transaction.category.name }}</td>
+        <td>{{ transaction.description }}</td>
+        <td>{{ transaction.recurring ? 'Ja' : 'Nein' }}</td>
+        <td>{{ transaction.account.name }}</td>
+      </tr>
+      <!--Hinweis, wenn keine Transaktionen vorhanden-->
+      <tr *ngIf="!filteredTransactions.length">
+        <td colspan="6" style="color: red;">Es sind noch keine Transaktionen für {{getAccountById(accountId)?.name}} vorhanden.
+          <br> Lege neue Transaktionen an oder klicke in der Zwischenzeit <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">hier</a>.
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

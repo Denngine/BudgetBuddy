@@ -33,10 +33,11 @@ public class Transaction {
     private boolean recurring;
 
     @ManyToOne
-    @JsonIgnoreProperties("transaktions")
+    @JsonIgnoreProperties("transactions")
     private Category category;
 
     @ManyToOne
-    @JsonIgnoreProperties("transaktions")
+    @JsonIgnoreProperties("transactions")
     private Account account;
 }
+
