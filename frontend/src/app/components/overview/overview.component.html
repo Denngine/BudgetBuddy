@@ -1,1 +1,23 @@
 <p>{{ accountId === -1 ? 'Gesamtübersicht' : (getAccountById(accountId)?.name || '') }}</p>
+<div>
+  <h2>Konten:</h2>
+  <ol>
+    <li *ngFor="let account of accounts">
+      {{account.name}}<br>
+      {{account.balance}} Euro<br>
+      <button [routerLink]="['/accform', account.id]">Bearbeiten</button>
+    </li>
+  </ol>
+  <button [routerLink]="['/accform', -1]">Konto Erstellen</button>
+</div><br><br>
+
+<div>
+  <h2>Kategorien:</h2>
+  <ol>
+    <li *ngFor="let category of categories">
+      {{category.name}}<br>
+      <button (click)="updateCategory(category.id!)">Bearbeiten</button>
+    </li>
+  </ol>
+  <button (click)="createCategory()">Kategorie Erstellen</button>
+</div>

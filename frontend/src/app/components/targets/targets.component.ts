@@ -23,7 +23,8 @@ export class TargetsComponent {
     this.loadAccounts();
     this.route.params.subscribe(params => {
       this.accountId = +params['id'];
-      this.updateService.setAccountId(+params['id']);
+      if (isNaN(this.accountId)) { this.accountId = -1; }
+      this.updateService.setAccountId(this.accountId);
     })
   }
 

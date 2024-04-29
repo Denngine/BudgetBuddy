@@ -29,7 +29,7 @@ public class Transaction {
     @NotBlank
     private String description;
 
-    @NotBlank
+    @NotNull
     private boolean recurring;
 
     @ManyToOne

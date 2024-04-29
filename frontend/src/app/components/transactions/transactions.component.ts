@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService } from '../../services/account/account.service';
 import { Account } from '../../models/account';
 import { TransactionService } from '../../services/transaction/transaction.service';
@@ -32,6 +32,7 @@ export class TransactionsComponent {
     private categoryService: CategoryService,
     private updateService: UpdateService,
     private route: ActivatedRoute,
+    private router: Router,
     private formBuilder: FormBuilder
   ) {
     this.formGroup = this.formBuilder.group({
@@ -50,8 +51,9 @@ export class TransactionsComponent {
 
     this.route.params.subscribe(params => {
       this.accountId = +params['id'];
-      this.updateService.setAccountId(+params['id']);
-    })
+      if (isNaN(this.accountId)) {this.accountId = -1;}
+      this.updateService.setAccountId(this.accountId);
+    });
     if(this.filteredTransactions.length === 0){
       this.filteredTransactions = this.transactions;
     }
@@ -207,6 +209,16 @@ export class TransactionsComponent {
       default:
         break;
     }
+  }
+
+  createTransaction(){
+    this.updateService.setEditId(-1);
+    this.router.navigate([`/traform/${this.accountId}`]);
+  }
+
+  updateTransaction(id: number){
+    this.updateService.setEditId(id);
+    this.router.navigate([`/traform/${this.accountId}`]);
   }
 }
 

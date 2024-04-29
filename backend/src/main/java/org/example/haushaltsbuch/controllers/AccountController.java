@@ -41,7 +41,7 @@ public class AccountController {
   }
 
   @PutMapping
-  public ResponseEntity<Account> updateAccount(@RequestBody Account account) {
+  public ResponseEntity<Account> updateAccount(@Validated @RequestBody Account account) {
     if(account.getId() == null) {
       return badRequest().build();
     }
