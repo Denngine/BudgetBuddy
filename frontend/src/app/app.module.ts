@@ -10,6 +10,9 @@ import { HomeComponent } from './components/home/home.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
 import { TargetsComponent } from './components/targets/targets.component';
+import { AccountFormComponent } from './forms/account-form/account-form.component';
+import { TransactionFormComponent } from './forms/transaction-form/transaction-form.component';
+import { CategoryFormComponent } from './forms/category-form/category-form.component';
 
 
 @NgModule({
@@ -19,7 +22,10 @@ import { TargetsComponent } from './components/targets/targets.component';
     HomeComponent,
     OverviewComponent,
     TransactionsComponent,
-    TargetsComponent
+    TargetsComponent,
+    AccountFormComponent,
+    TransactionFormComponent,
+    CategoryFormComponent
   ],
   imports: [
     BrowserModule,

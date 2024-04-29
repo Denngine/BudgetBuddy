@@ -1,8 +1,6 @@
 package org.example.haushaltsbuch.controllers;
 
-import org.example.haushaltsbuch.models.Account;
 import org.example.haushaltsbuch.models.Target;
-import org.example.haushaltsbuch.services.AccountService;
 import org.example.haushaltsbuch.services.TargetService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

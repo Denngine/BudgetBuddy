@@ -1,8 +1,6 @@
 package org.example.haushaltsbuch.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -38,10 +36,7 @@ public class Target {
   @NotNull
   private Date startDate;
 
+  @NotNull
   @PastOrPresent
   private Date endDate;
-
-  @ManyToOne
-  @JsonIgnoreProperties({"targets", "transactions", "depts"})
-  private Account account;
 }

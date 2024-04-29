@@ -16,7 +16,7 @@ export class TransactionService {
   }
 
   getTransactionById(id: number): Observable<Transaction> {
-    return this.httpClient.get<Transaction>(`${this.baseUrl}${id}`)
+    return this.httpClient.get<Transaction>(`${this.baseUrl}/${id}`)
   }
 
   createTransaction(transaction: Transaction): Observable<Transaction> {
@@ -28,6 +28,6 @@ export class TransactionService {
   }
 
   deleteTransaction(id: number): Observable<void> {
-    return this.httpClient.delete<void>(`${this.baseUrl}${id}`)
+    return this.httpClient.delete<void>(`${this.baseUrl}/${id}`)
   }
 }

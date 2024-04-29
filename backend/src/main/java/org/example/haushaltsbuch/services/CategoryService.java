@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.example.haushaltsbuch.models.Category;
 import org.example.haushaltsbuch.repositories.CategoryRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +13,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class CategoryService {
     private final CategoryRepository categoryRepository;
+    private final TransactionService transactionService;
 
     public List<Category> findAll(){
         return categoryRepository.findAll();
@@ -25,7 +27,13 @@ public class CategoryService {
     public Category update(Category category){
         return categoryRepository.save(category);
     }
+    @Transactional
     public void delete(Long id){
+        transactionService.deleteByCategory(id);
         categoryRepository.deleteById(id);
+    }
+
+    public void deleteByAccount(Long id){
+        categoryRepository.deleteByAccountId(id);
     }
 }

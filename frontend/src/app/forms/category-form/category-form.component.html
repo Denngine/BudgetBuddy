@@ -1,0 +1,11 @@
+<div>
+  <h1>{{ categoryId === -1 ? 'Kategorie Erstellen' : (category?.name + ' abändern' || '') }}</h1>
+
+    <form [formGroup]="categoryForm" (ngSubmit)="saveCategory()">
+      <label for="name">Name:</label>
+      <input type="text" id="name" formControlName="name" [placeholder]="category?.name ?? ''"><br><br>
+
+      <button type="submit">{{ categoryId === -1 ? 'Erstellen' : 'Aktualisieren' }}</button>
+      <button type="button" (click)="deleteCategory()" *ngIf="categoryId !== -1">Löschen</button>
+    </form>
+</div>
