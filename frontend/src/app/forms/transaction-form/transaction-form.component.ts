@@ -35,7 +35,7 @@ export class TransactionFormComponent {
       date: [null, Validators.required],
       amount: [null, Validators.required],
       description: [null, Validators.required],
-      recurring: [false, Validators.required],
+      recurring: [false],
       category: [null, Validators.required],
       account: [null, Validators.required]
     });
@@ -77,15 +77,21 @@ export class TransactionFormComponent {
   saveTransaktion() {
     const formData = this.transactionForm.value;
 
+    const accountId = parseInt(formData.account)
+    const categoryId = parseInt(formData.category)
+    const account: Account = this.accounts.find(account => account.id === accountId)!
+    const category: Category = this.categories.find(category => category.id === categoryId)!
+
     let transaction: Transaction = {
       id: (this.accountId === -1 ? null : this.transaction!.id)!,
-      date: this.transactionForm.value.date,
-      amount: this.transactionForm.value.amount,
-      description: this.transactionForm.value.description,
-      recurring: this.transactionForm.value.recurring,
-      category: this.transactionForm.value.category,
-      account: this.transactionForm.value.account
+      date: formData.date,
+      amount: formData.amount,
+      description: formData.description,
+      recurring: formData.recurring,
+      category,
+      account,
     };
+
     if (this.transactionId === -1) {
       this.transactionService.createTransaction(transaction)
         .subscribe(() => {

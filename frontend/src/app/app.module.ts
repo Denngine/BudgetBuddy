@@ -13,6 +13,8 @@ import { TargetsComponent } from './components/targets/targets.component';
 import { AccountFormComponent } from './forms/account-form/account-form.component';
 import { TransactionFormComponent } from './forms/transaction-form/transaction-form.component';
 import { CategoryFormComponent } from './forms/category-form/category-form.component';
+import { TargetFormComponent } from './forms/target-form/target-form.component';
+import { DebtFormComponent } from './forms/debt-form/debt-form.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { CategoryFormComponent } from './forms/category-form/category-form.compo
     TargetsComponent,
     AccountFormComponent,
     TransactionFormComponent,
-    CategoryFormComponent
+    CategoryFormComponent,
+    TargetFormComponent,
+    DebtFormComponent
   ],
   imports: [
     BrowserModule,
