@@ -44,20 +44,51 @@ export class HomeComponent {
       this.filterTransactions(data)}))
   }
 
+  calculateTotalExpenditure(): number{
+    let totalExpenditure = 0;
+    for (let transaction of this.filteredTransactions) {
+      if (transaction.amount < 0) {
+        totalExpenditure += transaction.amount;
+      }
+    }
+    return Math.abs(totalExpenditure)
+  }
+  calculateTotalIncome(): number{
+    let totalIncome = 0;
+    for (let transaction of this.filteredTransactions) {
+      if (transaction.amount > 0) {
+        totalIncome += transaction.amount;
+      }
+    }
+    return totalIncome;
+  }
+
   filterTransactions(data: Transaction[]): void {
     // filteredTransactions wird leeres Array zugewiesen, um Liste der Transactions zu leeren,
     // wenn eine neue Auswahl geschieht
     this.filteredTransactions = [];
     if(this.accountId == -1){
       this.filteredTransactions = data;
+      this.filterDate(this.filteredTransactions);
     }
     else {
       for (let transaction of data){
         if (transaction.account.id == this.accountId){
           this.filteredTransactions.push(transaction);
+          this.filterDate(this.filteredTransactions);
         }
       }
     }
+  }
+
+  filterDate(filteredTransactions: Transaction[]) {
+    const currentMonth = new Date().getMonth();
+    let result: Transaction[] = filteredTransactions.filter(entry => entry.date.getMonth() === currentMonth);
+    this.filteredTransactions = result;
+  }
+  formatDate(date: Date): string {
+    const options: Intl.DateTimeFormatOptions = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    return date.toLocaleDateString('de-DE', options);
   }
 
   calculateBalance(): number {
