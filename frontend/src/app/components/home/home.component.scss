@@ -3,13 +3,15 @@
   flex-direction: column;
   width: 300px; /* Anpassen nach Bedarf */
   border: 1px solid #ccc;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 10px;
 }
 
 .header-kontoanzeige {
   flex: 1; /* Nimmt 1 Teil der verfügbaren Höhe ein */
   text-align: center;
-  background-color: #00A4D3  /*#f0f0f0*/;
+  background-color: #00A4D3;
   padding: 10px;
   color: white;
   font-weight: bold;
@@ -35,13 +37,43 @@
 container-table {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+}
+
+.rounded-rectangle {
+  display: flex; /* Erlaubt horizontale Ausrichtung */
+  justify-content: space-between; /* Platz zwischen Einnahmen und Ausgaben */
+  width: 89%; /* Breite wie Tabelle */
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+.expenditure-section,
+.income-section {
+  display: flex;
+  align-items: center;
+}
+
+.label-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+label {
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+  width: 95%; /* 95% gewählt, da das Label dann bündig mit der Tabelle erscheint */
 }
 
 table {
-  width: 80%; /* Optionale Breite für die Tabelle */
+  width: 90%; /* Breite auf 90% gesetzt, damit Tabelle nicht die ganze Seitenbreite ausfüllt */
   border-collapse: collapse; /* Interne Ränder entfernen */
-  margin-left: auto;
+  margin-left: auto;  /* margin left & right auto, damit die Tabelle zentriert wird */
   margin-right: auto;
   margin-top: 10px;
 }

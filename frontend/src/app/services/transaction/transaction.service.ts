@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 import {Transaction} from "../../models/transaction";
 
 @Injectable({
@@ -13,6 +13,12 @@ export class TransactionService {
 
   getAll(): Observable<Transaction[]> {
     return this.httpClient.get<Transaction[]>(`${this.baseUrl}`)
+      .pipe(
+        map(transactions => transactions.map(transaction => ({
+          ...transaction,
+          date: new Date(transaction.date) // Parse date string into Date object
+        })))
+      );
   }
 
   getTransactionById(id: number): Observable<Transaction> {
