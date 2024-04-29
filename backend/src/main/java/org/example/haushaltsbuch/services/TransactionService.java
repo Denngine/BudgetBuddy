@@ -29,5 +29,11 @@ public class TransactionService {
     public void delete(Long id){
         transactionRepository.deleteById(id);
     }
+
+    public void deleteByCategory(Long id) {
+        transactionRepository.deleteByCategoryId(id);
+    }
+
+    public void deleteByAccount(Long id) { transactionRepository.deleteByAccountId(id); }
 }
 

@@ -6,18 +6,32 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class UpdateService {
   private accountId: BehaviorSubject<number> = new BehaviorSubject<number>(-1);
+  private accountChanges: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private editId: number = -1;
 
   constructor() { }
 
-  getAccountIdObservable() {
-    return this.accountId.asObservable();
-  }
-
   getAccountId() {
-    return this.accountId.value;
+    return this.accountId.asObservable();
   }
 
   setAccountId(id: number) {
     this.accountId.next(id);
+  }
+
+  setAccountChanges() {
+    this.accountChanges.next(!this.accountChanges);
+  }
+
+  getAccountChanges() {
+    return this.accountChanges.asObservable();
+  }
+
+  setEditId(id: number) {
+    this.editId = id;
+  }
+
+  getEditId(): number{
+    return this.editId;
   }
 }

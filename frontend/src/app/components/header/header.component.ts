@@ -23,9 +23,12 @@ export class HeaderComponent {
 
   ngOnInit(): void {
     this.loadAccounts();
-    this.updateService.getAccountIdObservable().subscribe(id => {
+    this.updateService.getAccountId().subscribe(id => {
       this.accountId = id;
       this.calculateBalance(id);
+    });
+    this.updateService.getAccountChanges().subscribe(() => {
+      this.loadAccounts();
     });
   }
 

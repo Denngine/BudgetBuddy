@@ -25,23 +25,20 @@ export class HomeComponent {
   ) { }
 
   ngOnInit(): void {
-    this.loadAccounts();
     this.route.params.subscribe(params => {
       this.accountId = +params['id'];
-      this.updateService.setAccountId(+params['id']);
+      if (isNaN(this.accountId)) {this.accountId = -1;}
+      this.updateService.setAccountId(this.accountId);
       // lädt nach Auswahl eines neuen Kontos Transaktionen neu
-      this.loadTransactions();
+      this.loadContent();
     })
-  }
-
-  loadAccounts(){
-    this.accountService.getAll().subscribe(
-      (data => this.accounts = data))
   }
 
   // Lädt alle Transaktionen und gibt alle aus, wenn die Auswahl die Gesamtübersicht ist,
   // wenn nicht, wird nach dem Konto gefiltert und nur dessen Transaktionen werden ausgegeben
-  loadTransactions(){
+  loadContent(){
+    this.accountService.getAll().subscribe(
+      (data => this.accounts = data))
     this.transactionService.getAll().subscribe(
       (data => {this.transactions = data.filter(transaction => this.accountId == -1 || transaction.account.id == this.accountId ),
       this.filterTransactions(data)}))
@@ -93,6 +90,7 @@ export class HomeComponent {
     const options: Intl.DateTimeFormatOptions = { day: '2-digit', month: '2-digit', year: 'numeric' };
     return date.toLocaleDateString('de-DE', options);
   }
+
   calculateBalance(): number {
     let balance = 0;
     if (this.accountId === -1){                   //kontostand für Gesamtübersicht

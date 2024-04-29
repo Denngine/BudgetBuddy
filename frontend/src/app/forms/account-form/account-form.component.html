@@ -1,0 +1,15 @@
+<div>
+  <h1>{{ accountId === -1 ? 'Konto Erstellen' : (account?.name + ' abändern' || '') }}</h1>
+
+  <form [formGroup]="accountForm" (ngSubmit)="saveAccount()">
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" formControlName="name" [placeholder]="account?.name ?? ''"><br><br>
+
+    <label for="balance">Balance:</label>
+    <input type="number" id="balance" formControlName="balance" [placeholder]="account?.balance ?? ''"><br><br>
+
+    <button type="submit">{{ accountId === -1 ? 'Erstellen' : 'Aktualisieren' }}</button>
+    <button (click)="deleteAccount()" *ngIf="accountId !== -1">Löschen</button>
+  </form>
+</div>

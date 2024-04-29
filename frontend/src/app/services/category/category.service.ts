@@ -16,7 +16,7 @@ export class CategoryService {
   }
 
   getCategoryById(id: number): Observable<Category> {
-    return this.httpClient.get<Category>(`${this.baseUrl}${id}`)
+    return this.httpClient.get<Category>(`${this.baseUrl}/${id}`)
   }
 
   createCategory(category: Category): Observable<Category> {
@@ -28,6 +28,6 @@ export class CategoryService {
   }
 
   deleteCategory(id: number): Observable<void> {
-    return this.httpClient.delete<void>(`${this.baseUrl}${id}`)
+    return this.httpClient.delete<void>(`${this.baseUrl}/${id}`)
   }
 }
