@@ -111,5 +111,72 @@ export class HomeComponent {
     }
     return null;
   }
+  sorted = { isSorted: false, attribute: "" };
+  sortBy(attribute: string): void {
+    switch (attribute) {
+      case 'date':
+        if (this.sorted.isSorted && this.sorted.attribute === 'date'){
+          this.filteredTransactions.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        } else {
+          this.filteredTransactions.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+        }
+        this.sorted.isSorted = !this.sorted.isSorted;
+        this.sorted.attribute = 'date';
+        break;
+
+      case 'amount':
+        if (this.sorted.isSorted && this.sorted.attribute === 'amount'){
+          this.filteredTransactions.sort((a, b) => a.amount - b.amount);
+        } else {
+          this.filteredTransactions.sort((a, b) => b.amount - a.amount);
+        }
+        this.sorted.isSorted = !this.sorted.isSorted;
+        this.sorted.attribute = 'amount';
+        break;
+
+      case 'description':
+        if (this.sorted.isSorted && this.sorted.attribute === 'description'){
+          this.filteredTransactions.sort((a, b) => b.description.localeCompare(a.description));
+        } else {
+          this.filteredTransactions.sort((a, b) => a.description.localeCompare(b.description));
+        }
+        this.sorted.isSorted = !this.sorted.isSorted;
+        this.sorted.attribute = 'description';
+        break;
+
+      case 'recurring':
+        if (this.sorted.isSorted && this.sorted.attribute === 'recurring'){
+          this.filteredTransactions.sort((a, b) => a.recurring === b.recurring ? 0 : a.recurring ? -1 : 1);
+        } else {
+          this.filteredTransactions.sort((a, b) => a.recurring === b.recurring ? 0 : a.recurring ? 1 : -1);
+        }
+        this.sorted.isSorted = !this.sorted.isSorted;
+        this.sorted.attribute = 'recurring';
+        break;
+
+      case 'category':
+        if (this.sorted.isSorted && this.sorted.attribute === 'category'){
+          this.filteredTransactions.sort((a, b) => b.category.name.localeCompare(a.category.name));
+        } else {
+          this.filteredTransactions.sort((a, b) => a.category.name.localeCompare(b.category.name));
+        }
+        this.sorted.isSorted = !this.sorted.isSorted;
+        this.sorted.attribute = 'category';
+        break;
+
+      case 'account':
+        if (this.sorted.isSorted && this.sorted.attribute === 'account'){
+          this.filteredTransactions.sort((a, b) => b.account.name.localeCompare(a.account.name));
+        } else {
+          this.filteredTransactions.sort((a, b) => a.account.name.localeCompare(b.account.name));
+        }
+        this.sorted.isSorted = !this.sorted.isSorted;
+        this.sorted.attribute = 'account';
+        break;
+
+      default:
+        break;
+    }
+  }
 }
 

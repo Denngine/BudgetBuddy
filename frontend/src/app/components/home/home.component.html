@@ -22,12 +22,12 @@
     <table id="table">
       <thead>
       <tr>
-        <th>Datum</th>
-        <th>Betrag</th>
-        <th>Kategorie</th>
-        <th>Beschreibung</th>
-        <th>Wiederkehrend</th>
-        <th>Konto</th>
+        <th (click)="sortBy('date')">Datum</th>
+        <th (click)="sortBy('amount')">Betrag</th>
+        <th (click)="sortBy('category')">Kategorie</th>
+        <th (click)="sortBy('description')">Beschreibung</th>
+        <th (click)="sortBy('recurring')">Wiederkehrend</th>
+        <th (click)="sortBy('account')">Konto</th>
       </tr>
       </thead>
       <tbody>
