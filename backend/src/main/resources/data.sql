@@ -11,8 +11,8 @@ INSERT INTO Transaction (id,date, amount, description, recurring, category_id, a
 INSERT INTO Transaction (id,date, amount, description, recurring, category_id, account_id) VALUES (1004,'2024-04-23', 100.00, 'Gehaltseingang', false, 1008, 1001);
 
 
-INSERT INTO Dept (id, total_depts, already_paid, beneficiary, deadline) VALUES (1001, 500.00, 200.00, 'Max Mustermann',  '2024-05-15');
-INSERT INTO Dept (id, total_depts, already_paid, beneficiary, deadline) VALUES (1002, 1000.00, 0.00, 'Erika Musterfrau',  '2024-06-01');
+INSERT INTO Debt (id, total_debts, already_paid, beneficiary, deadline) VALUES (1001, 500.00, 200.00, 'Max Mustermann',  '2024-05-15');
+INSERT INTO Debt (id, total_debts, already_paid, beneficiary, deadline) VALUES (1002, 1000.00, 0.00, 'Erika Musterfrau',  '2024-06-01');
 
 INSERT INTO Target (id, name, rate, unit, start_date, end_date) VALUES (1001, 'Sparen für Urlaub', 0.1, '€', '2024-04-27', '2024-12-31');
 INSERT INTO Target (id, name, rate, unit, start_date, end_date) VALUES (1002, 'Notfallfonds', 0.2, '€', '2024-01-01', '2024-12-31' );

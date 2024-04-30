@@ -1,6 +1,5 @@
 package org.example.haushaltsbuch.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import jakarta.persistence.*;
@@ -19,14 +18,14 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class Dept {
+public class Debt {
 
  @Id
  @GeneratedValue
  private Long id;
 
  @NotNull
- BigDecimal totalDepts;
+ BigDecimal totalDebts;
 
  @NotNull
  BigDecimal alreadyPaid;

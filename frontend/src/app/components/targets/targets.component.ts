@@ -44,13 +44,11 @@ export class TargetsComponent {
   }
 
   postDebt(debt: Debt){
-    console.log(1)
     this.debtService.createDept(debt).subscribe(
     (() => this.loadTarget()))
   }
 
   putDebt(debt: Debt){
-    console.log(1)
     this.debtService.updateDept(debt).subscribe(
     (() => this.loadTarget()))
   }
@@ -61,13 +59,11 @@ export class TargetsComponent {
   }
 
   postTarget(target: Target) {
-    console.log(1)
     this.targetService.createTarget(target).subscribe(
       (data => this.loadTarget()))
   }
 
   putTarget(target: Target) {
-    console.log(2)
     this.targetService.updateTarget(target).subscribe(
       (data => this.loadTarget()))
   }

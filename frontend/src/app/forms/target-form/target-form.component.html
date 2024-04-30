@@ -12,6 +12,7 @@
           <th>Unit</th>
           <th>Anfangs Datum</th>
           <th>End Datum</th>
+          <th>Bearbeiten</th>
         </tr>
       </thead>
       <tbody>
@@ -21,6 +22,10 @@
           <td>{{ target.unit }}</td>
           <td>{{ target.startDate | date }}</td>
           <td>{{ target.endDate | date }}</td>
+          <td>
+            <button type="button" class="btn btn-primary text-white" (click)="saveTarget(target)">Edit</button>
+            <button type="button" class="btn btn-primary text-white" (click)="removeTarget(target.id!)">Delete</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -42,7 +47,7 @@
 
       <div class="modal-body">
         <div style="border: solid; padding: 1em; margin: 1em">
-          <form [formGroup]="addTargetForm" (ngSubmit)="saveTarget()">
+          <form [formGroup]="addTargetForm" (ngSubmit)="saveTarget(null)">
 
               <div class="form-group">
                 <label for="name">Name:</label>

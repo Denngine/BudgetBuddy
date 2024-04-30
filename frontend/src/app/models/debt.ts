@@ -1,6 +1,6 @@
 export interface Debt {
   id?: number
-  total_depts: number
+  total_debts: number
   already_paid: number
   beneficiary: String
   deadline: Date

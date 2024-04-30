@@ -26,19 +26,36 @@ export class TargetFormComponent {
     });
   }
 
+  saveTarget(target: Target | null) {
+    let newTarget: Target;
+    newTarget = {
+      id: target?.id,
+      name: this.addTargetForm.value.name,
+      rate: this.addTargetForm.value.rate,
+      unit: this.addTargetForm.value.unit,
+      startDate: this.addTargetForm.value.startDate,
+      endDate: this.addTargetForm.value.endDate
+    }
+    if(newTarget.id == null){
+      this.generateTarget.emit(newTarget);
+    } else {
+      this.updateTarget.emit(newTarget);
+    }
+    this.addTargetForm.reset();
+  }
+
+/*
   saveTarget() {
-    console.log(5)
     const target = this.addTargetForm.value;
     if (target.id) {
-      console.log(6)
       this.generateTarget.emit(target);
     } else {
-      console.log(7)
       this.updateTarget.emit(target);
     }
     this.closeAddTargetForm();
     this.addTargetForm.reset();
   }
+*/
 
   removeTarget(id: number) {
     this.deleteTarget.emit(id);
@@ -56,9 +73,5 @@ export class TargetFormComponent {
     if(modelDiv!= null){
      modelDiv .style.display= 'none';
     }
-  }
-
-  editTargets(target: Target) {
-    this.addTargetForm.patchValue(target);
   }
 }

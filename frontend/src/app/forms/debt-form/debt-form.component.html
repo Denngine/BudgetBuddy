@@ -4,11 +4,11 @@
 
 
 <div style="border: solid; padding: 1em; margin: 1em" >
-  <form [formGroup]="deptsForm" (ngSubmit)="saveDept()">
+  <form [formGroup]="debtsForm" (ngSubmit)="saveDebt()">
     <table>
       <thead>
         <tr>
-          <th>ID</th>
+          <!--<th>ID</th>-->
           <th>Total Debts</th>
           <th>Already Paid</th>
           <th>Beneficiary</th>
@@ -18,19 +18,19 @@
       </thead>
       <tbody>
         <tr *ngFor="let debt of debtList">
-          <td>{{ debt.id }}</td>
-          <td>{{ debt.total_depts }}</td>
+          <!--<td>{{ debt.id }}</td>-->
+          <td>{{ debt.total_debts }}</td>
           <td>{{ debt.already_paid }}</td>
           <td>{{ debt.beneficiary }}</td>
           <td>{{ debt.deadline | date }}</td>
           <td>
-            <button type="button" class="btn btn-primary text-white" (click)="editDepts(debt)">Edit</button>
+            <button type="button" class="btn btn-primary text-white" (click)="editDebts(debt)">Edit</button>
             <button type="button" class="btn btn-primary text-white" (click)="removeDebt(debt.id)">Delete</button>
           </td>
         </tr>
         <tr>
-          <td><input type="number" formControlName="id"></td>
-          <td><input type="number" formControlName="total_depts"></td>
+          <!--<td><input type="number" formControlName="id"></td>-->
+          <td><input type="number" formControlName="total_debts"></td>
           <td><input type="number" formControlName="already_paid"></td>
           <td><input type="text" formControlName="beneficiary"></td>
           <td><input type="date" formControlName="deadline"></td>

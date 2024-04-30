@@ -35,7 +35,7 @@ export class TransactionFormComponent {
       date: [null, Validators.required],
       amount: [null, Validators.required],
       description: [null, Validators.required],
-      recurring: [false],
+      recurring: [false, Validators.required],
       category: [null, Validators.required],
       account: [null, Validators.required]
     });

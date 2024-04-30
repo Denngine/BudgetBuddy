@@ -12,27 +12,50 @@ export class DebtFormComponent {
   @Output() generateDebt: EventEmitter<Debt> = new EventEmitter<Debt>();
   @Output() updateDebt: EventEmitter<Debt> = new EventEmitter<Debt>();
   @Output() deleteDebt: EventEmitter<number> = new EventEmitter<number>();
-  deptsForm: FormGroup;
+  debtsForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
-    this.deptsForm = this.fb.group({
-      id: [],
-      total_depts: [null, Validators.required],
+    this.debtsForm = this.fb.group({
+      id: [null],
+      total_debts: [null, Validators.required],
       already_paid: [null, Validators.required],
       beneficiary: [null, Validators.required],
       deadline: [null, Validators.required]
     });
   }
 
-  saveDept() {
-    const debt = this.deptsForm.value;
+  saveDebt() {
+    let debt: Debt;
+    debt = {
+      id: this.debtsForm.value.id || null,
+      total_debts: this.debtsForm.value.total_debts,
+      already_paid: this.debtsForm.value.already_paid,
+      beneficiary: this.debtsForm.value.beneficiary,
+      deadline: this.debtsForm.value.deadline,
+    }
+    if(debt.id == null){
+      this.generateDebt.emit(debt);
+    } else {
+      this.updateDebt.emit(debt);
+    }
+    this.debtsForm.reset();
+  }
+
+  editDebts(debt: Debt) {
+    this.debtsForm.patchValue(debt);
+  }
+
+  /*
+    saveDebt() {
+    let debt: Debt = this.debtsForm.value;
     if (debt.id) {
       this.generateDebt.emit(debt)
     } else {
       this.updateDebt.emit(debt)
     }
-    this.deptsForm.reset();
+    this.debtsForm.reset();
   }
+  */
 
   removeDebt(id?: number) {
     this.deleteDebt.emit(id);
@@ -43,9 +66,5 @@ export class DebtFormComponent {
 
   onChange() {
     this.optionChoice = this.templates.nativeElement.value;
-  }
-
-  editDepts(debt: Debt) {
-    this.deptsForm.patchValue(debt);
   }
 }
