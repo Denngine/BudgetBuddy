@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Century+Gothic&display=swap');
+
+.font-century-gothic {
+  font-family: 'Century Gothic', sans-serif;
+}
+
+
+
+
 .container {
   display: flex;
 }
@@ -33,7 +42,7 @@ tr:hover {
 }
 
 .filter-dropdown {
-  background-color: lightblue;
+  background-color: rgb(253, 253, 253);
 }
 
 .filter-dropdown.hide-dropdown {

@@ -1,4 +1,5 @@
-<p>{{ accountId === -1 ? 'Gesamtübersicht' : (getAccountById(accountId)?.name || '') }}</p>
+<!--
+  <p>{{ accountId === -1 ? 'Gesamtübersicht' : (getAccountById(accountId)?.name || '') }}</p>
 <div>
   <h2>Konten:</h2>
   <ol>
@@ -21,3 +22,150 @@
   </ol>
   <button (click)="createCategory()">Kategorie Erstellen</button>
 </div>
+-->
+
+
+<!--<div class="container">
+  <h1>{{ accountId === -1 ? 'Gesamtübersicht' : (getAccountById(accountId)?.name || '') }}</h1>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Konten:</h2>
+      <ul class="list-group">
+        <li *ngFor="let account of accounts" class="list-group-item">
+          <span>{{account.name}}</span><br>
+          <span>{{account.balance}} Euro</span><br>
+          <button class="btn btn-primary" [routerLink]="['/accform', account.id]">Bearbeiten</button>
+        </li>
+      </ul>
+      <button class="btn btn-success mt-3" [routerLink]="['/accform', -1]">Konto Erstellen</button>
+    </div>
+
+    <div class="col-md-6">
+      <h2>Kategorien:</h2>
+      <ul class="list-group">
+        <li *ngFor="let category of categories" class="list-group-item">
+          <span>{{category.name}}</span><br>
+          <button class="btn btn-primary" (click)="updateCategory(category.id!)">Bearbeiten</button>
+        </li>
+      </ul>
+      <button class="btn btn-success mt-3" (click)="createCategory()">Kategorie Erstellen</button>
+    </div>
+  </div>
+</div>
+-->
+
+<!--<div class="font-century-gothic">
+-<div class="container d-flex flex-column align-items-center mt-5">
+  <h1 class="mb-4">{{ accountId === -1 ? 'Gesamtübersicht' : (getAccountById(accountId)?.name || 'Sparkonto') }}</h1>
+
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Konten:</h2>
+        <ul class="list-group">
+          <li *ngFor="let account of accounts" class="list-group-item">
+            <span>{{account.name}}</span><br>
+            <span>{{account.balance}} Euro</span><br>
+            <button class="btn btn-primary" [routerLink]="['/accform', account.id]">Bearbeiten</button>
+          </li>
+        </ul>
+        <button class="btn btn-success mt-3" [routerLink]="['/accform', -1]">Konto Erstellen</button>
+      </div>
+
+      <div class="col-md-6">
+        <h2>Kategorien:</h2>
+        <ul class="list-group">
+          <li *ngFor="let category of categories" class="list-group-item">
+            <span>{{category.name}}</span><br>
+            <button class="btn btn-primary" (click)="updateCategory(category.id!)">Bearbeiten</button>
+          </li>
+        </ul>
+        <button class="btn btn-success mt-3" (click)="createCategory()">Kategorie Erstellen</button>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+
+
+  <!--<main class="container mt-5">
+
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Konten:</h2>
+        <ul class="list-group">
+
+        </ul>
+
+        <button class="btn btn-primary mt-3" [routerLink]="['/accform', -1]">Neues Konto erstellen</button>
+      </div>
+
+
+      <div class="col-md-6">
+        <h2>Kategorien:</h2>
+        <ul class="list-group">
+
+        </ul>
+
+        <button class="btn btn-primary mt-3" [routerLink]="['/categoryform', -1]">Neue Kategorie erstellen</button>
+      </div>
+    </div>
+  </main>
+-->
+<div class="font-century-gothic">
+  <div class="container d-flex flex-column align-items-center mt-5">
+    <h1 class="mb-4">KO(nten) | KA(tegorien) | IN(vestitionen) </h1>
+
+    <div class="row">
+
+      <div class="col">
+        <div class="m-3 p-3" style="border: solid;">
+          <h2>Konten:</h2>
+            <table class="table mt-4 mb-4"> <!-- Adding margin-bottom for space -->
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Balance</th>
+                  <th></th>
+                  <th></th> <!-- New Delete button column -->
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let account of accounts">
+                  <td>{{account.name}}</td>
+                  <td>{{account.balance}} Euro</td>
+                  <td><button class="btn btn-primary" [routerLink]="['/accform', account.id]">Bearbeiten</button></td>
+                </tr>
+              </tbody>
+            </table>
+          <button class="btn btn-success" [routerLink]="['/accform', -1]">Konto Erstellen</button>
+        </div>
+      </div>
+
+
+      <div class="col"> <!-- Removed inline style -->
+        <div class="m-3 p-3" style="border: solid;">
+          <h2>Kategorien:</h2> <!-- Adding margin-top for space -->
+            <table class="table mt-4 mb-4">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th></th>
+                  <th></th> <!-- New Delete button column -->
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let category of categories">
+                  <td>{{category.name}}</td>
+                  <td><button class="btn btn-primary" (click)="updateCategory(category.id!)">Bearbeiten</button></td>
+                </tr>
+              </tbody>
+            </table>
+          <button class="btn btn-success mt-3" (click)="createCategory()">Kategorie Erstellen</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -78,5 +78,6 @@ export class AccountFormComponent {
           this.router.navigate([`/overview/-1`]),
           this.updateService.setAccountChanges();
         });
-  }
+
+}
 }
