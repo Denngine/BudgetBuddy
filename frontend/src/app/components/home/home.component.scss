@@ -1,7 +1,15 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Century+Gothic&display=swap');
+
+.font-century-gothic {
+  font-family: 'Century Gothic', sans-serif;
+}
+
+
 .container-kontoanzeige {
   display: flex;
   flex-direction: column;
-  width: 300px; /* Anpassen nach Bedarf */
+  width: 300px;
   border: 1px solid #ccc;
   margin-left: auto;
   margin-right: auto;
@@ -9,7 +17,7 @@
 }
 
 .header-kontoanzeige {
-  flex: 1; /* Nimmt 1 Teil der verfügbaren Höhe ein */
+  flex: 1;
   text-align: center;
   background-color: #00A4D3;
   padding: 10px;
@@ -18,7 +26,7 @@
 }
 
 .content {
-  flex: 3; /* Nimmt 3 Teile der verfügbaren Höhe ein */
+  flex: 3;
   display: flex;
   flex-direction: column;
   padding: 10px;
@@ -40,9 +48,9 @@ container-table {
 }
 
 .rounded-rectangle {
-  display: flex; /* Erlaubt horizontale Ausrichtung */
-  justify-content: space-between; /* Platz zwischen Einnahmen und Ausgaben */
-  width: 89%; /* Breite wie Tabelle */
+  display: flex;
+  justify-content: space-between;  //Platz zwischen Einnahmen und Ausgaben
+  width: 89%; //Breite wie Tabelle
   margin-bottom: 10px;
   margin-left: auto;
   margin-right: auto;
@@ -67,44 +75,47 @@ label {
   display: block;
   margin-left: auto;
   margin-right: 0;
-  width: 95%; /* 95% gewählt, da das Label dann bündig mit der Tabelle erscheint */
+  width: 95%; // 95% gewählt, da das Label dann bündig mit der Tabelle erscheint
 }
 
 table {
-  width: 90%; /* Breite auf 90% gesetzt, damit Tabelle nicht die ganze Seitenbreite ausfüllt */
-  border-collapse: collapse; /* Interne Ränder entfernen */
-  margin-left: auto;  /* margin left & right auto, damit die Tabelle zentriert wird */
+  width: 90%; // Breite auf 90% gesetzt, damit Tabelle nicht die ganze Seitenbreite ausfüllt
+  border-collapse: collapse; // Interne Ränder entfernen
+  margin-left: auto;  // margin left & right auto, damit die Tabelle zentriert wird
   margin-right: auto;
   margin-top: 10px;
 }
 
-thead {
-  background-color: #00A4D3; /* Blauer Hintergrund für den Tablehead */
-  color: white; /* Weiße Schriftfarbe für den Tablehead */
-  text-align: center; /* Text zentrieren */
-  font-weight: bold; /* Fettschrift für den Tablehead */
+/*thead {
+  background-color: #00A4D3; // Blauer Hintergrund für den Tablehead
+  color: white; // Weiße Schriftfarbe für den Tablehead
+  text-align: center; // Text zentrieren
+  font-weight: bold; // Fettschrift für den Tablehead
 }
 
 th {
-  padding: 10px; /* Polsterung für die Tabellenzellen */
-  border: 1px solid #ddd; /* Heller Rand für Tabellenzellen */
+  padding: 10px; /* Polsterung für die Tabellenzellen
+  border: 1px solid #ddd; /* Heller Rand für Tabellenzellen
 }
 
+
+
 tbody tr {
-  background-color: #f8f9fa; /* Heller Hintergrund für den Tablebody */
+  background-color: #f8f9fa; /* Heller Hintergrund für den Tablebody
 }
 
 tbody tr:hover {
-  background-color: #e8f0fe; /* Hellgrauer Hintergrund beim Hovern */
+  background-color: #e8f0fe; /* Hellgrauer Hintergrund beim Hovern
 }
 
 td {
-  padding: 10px; /* Polsterung für die Tabellenzellen */
-  border: 1px solid #ddd; /* Heller Rand für Tabellenzellen */
+  padding: 10px; /* Polsterung für die Tabellenzellen
+  border: 1px solid #ddd; /* Heller Rand für Tabellenzellen
 }
 
 .table th:hover {
   background-color: #f5f5f5;
   color: black;
   cursor: pointer;
-}
+}*/
+

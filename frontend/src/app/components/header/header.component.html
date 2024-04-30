@@ -1,4 +1,5 @@
-<header>
+<!--
+  <header>
   <div class="logo">
     <img src="assets/img/logo.png" alt="Logo">
   </div>
@@ -21,3 +22,81 @@
     </div>
   </div>
 </header>
+-->
+
+<!--<div class="font-century-gothic">
+<nav class="navbar navbar-inverse navbar-primary bg-primary">
+  <div class="container-fluid">
+     <div class="navbar-header">
+      <div class="logo">
+        <img src="assets/img/logo.png" alt="Logo">
+      </div>
+    </div>
+    <div class="nav navbar-nav">
+      <nav>
+        <button [routerLink]="['/home', accountId]">Home</button>
+        <button [routerLink]="['/overview', accountId]">KoKaIn</button>
+        <button [routerLink]="['/transactions', accountId]">Transaktionen</button>
+        <button [routerLink]="['/targets', accountId]">Ziele</button>
+      </nav>
+    </div>
+
+    <div class="nav navbar-nav">
+      <div class="balance bg-light container-sm">
+        <span>{{ balance }}</span>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn bg-light">
+          {{ accountId === -1 ? 'Gesamtübersicht' : (getAccountById(accountId)?.name || '') }}
+        </button>
+        <div class="dropdown-content">
+          <a (click)="selectAccount(null)">Gesamtübersicht</a>
+          <a *ngFor="let account of accounts" (click)="selectAccount(account)">{{ account.name }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+</div>-->
+
+<div class="font-century-gothic">
+  <div class="navbar navbar-inverse navbar-primary bg-primary">
+
+      <div class="navbar-header w-25">
+        <div class="logo">
+          <img src="assets/img/logo.png" alt="Logo">
+        </div>
+      </div>
+
+      <div class="nav navbar-nav">
+        <nav>
+          <button [routerLink]="['/home', accountId]">Home</button>
+          <button [routerLink]="['/overview', accountId]">KoKaIn</button>
+          <button [routerLink]="['/transactions', accountId]">Transaktionen</button>
+          <button [routerLink]="['/targets', accountId]">Ziele</button>
+        </nav>
+      </div>
+
+      <div class="nav navbar-nav flex-row flex-nowrap w-25 justify-content-end align-contents-center">
+        <div class="balance bg-light flex-column d-flex justify-content-center p-1">
+          <span>{{ balance }}</span>
+        </div>
+
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ accountId === -1 ? 'Gesamtübersicht' : (getAccountById(accountId)?.name || '') }}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="position: absolute;">
+            <a class="dropdown-item" (click)="selectAccount(null)">Gesamtübersicht</a>
+            <a *ngFor="let account of accounts" class="dropdown-item" (click)="selectAccount(account)">{{ account.name }}</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
