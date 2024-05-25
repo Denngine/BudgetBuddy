@@ -20,10 +20,10 @@ public class TargetService {
   public Optional<Target> findByID(Long id){
     return targetRepository.findById(id);
   }
-  public Target create(Target category){
-    return targetRepository.save(category);
+  public Target create(Target target){
+    return targetRepository.save(target);
   }
-  public Target update(Target category){return targetRepository.save(category);
+  public Target update(Target target){return targetRepository.save(target);
   }
   public void delete(Long id){
     targetRepository.deleteById(id);

@@ -8,9 +8,9 @@ header {
 
 nav {
   display: flex;
-  justify-content: center; /* alle Links zentrieren */
-  align-items: center; /* vertikal zentrieren */
-  flex-grow: 1; /* den verfügbaren Platz auszufüllen */
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
 }
 
 nav button {
@@ -18,7 +18,7 @@ nav button {
 }
 
 .logo img {
-  width: 50px;
+  height: 45px;
 }
 
 .info {

@@ -34,6 +34,5 @@ public class Debt {
  String beneficiary;
 
  @NotNull
- @PastOrPresent
  Date deadline;
 }

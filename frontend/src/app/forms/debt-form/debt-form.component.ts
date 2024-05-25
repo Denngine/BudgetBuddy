@@ -45,18 +45,6 @@ export class DebtFormComponent {
     this.debtsForm.patchValue(debt);
   }
 
-  /*
-    saveDebt() {
-    let debt: Debt = this.debtsForm.value;
-    if (debt.id) {
-      this.generateDebt.emit(debt)
-    } else {
-      this.updateDebt.emit(debt)
-    }
-    this.debtsForm.reset();
-  }
-  */
-
   removeDebt(id?: number) {
     this.deleteDebt.emit(id);
   }

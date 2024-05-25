@@ -33,19 +33,15 @@ export class HeaderComponent {
   }
 
   selectAccount(selected: Account | null): void {
-    let newId: number;                //anstelle von [accountIndex] für besser performance
-
+    let newId: number;
     if (selected === null) {
-      newId = -1;                     //index für Gesamtübersicht
+      newId = -1;
     } else if (selected.id !== undefined) {
-      newId = selected.id;            //this.accounts.indexOf(selected);
+      newId = selected.id;
     } else {
       newId = -1;
     }
-
-    this.calculateBalance(newId);     //bessere Performance mit [newIndex]
-
-    //lädt die navigierte route neu
+    this.calculateBalance(newId);
     let activeRoute: string = this.router.url.split('/')[1];
     this.router.navigate(["/", activeRoute, newId]);
   }
@@ -60,12 +56,12 @@ export class HeaderComponent {
   }
 
   calculateBalance(id: number) {
-    if (id === -1){                   //kontostand für Gesamtübersicht
+    if (id === -1){
       this.balance = 0;
       for(let account of this.accounts){
         this.balance += account.balance;
       }
-    } else {                             //kontostand für das ausgewählte Konto
+    } else {
       this.balance = (this.getAccountById(id)?.balance) ?? 0;
     }
   }

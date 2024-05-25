@@ -32,19 +32,20 @@ public class TargetController {
   }
 
   @PostMapping
-  public ResponseEntity<Target> createTarget(@Validated @RequestBody Target target) {
+  public ResponseEntity<Target> createTarget(@RequestBody @Validated Target target) {
     if(target.getId() != null) {
-      return badRequest().build();
+      return ResponseEntity.badRequest().build();
     }
-    return ok(targetService.create(target));
+    return ResponseEntity.ok(targetService.create(target));
   }
 
+
   @PutMapping
-  public ResponseEntity<Target> updateTarget(@Validated @RequestBody Target target) {
+  public ResponseEntity<Target> updateTarget( @RequestBody @Validated Target target) {
     if(target.getId() == null) {
-      return badRequest().build();
+      return ResponseEntity.badRequest().build();
     }
-    return ok(targetService.update(target));
+    return ResponseEntity.ok(targetService.update(target));
   }
 
   @DeleteMapping("/{id}")

@@ -1,7 +1,7 @@
 <div class="container p-3">
-  <h1>{{ transactionId === -1 ? 'Kategorie Erstellen' : (transaction?.description + ' abändern' || '') }}</h1>
+  <h1>{{ transactionId === -1 ? 'Trasaktion Erstellen' : (transaction?.description + ' abändern' || '') }}</h1>
 
-  <form [formGroup]="transactionForm" (ngSubmit)="saveTransaktion()">
+  <form [formGroup]="transactionForm" (ngSubmit)="saveTransaction()">
 
     <div class="form-group">
       <label for="date">Datum</label>
@@ -43,8 +43,9 @@
 </div>
 
 
-<!--
 
+
+<!--
 <form [formGroup]="transactionForm" (ngSubmit)="saveTransaktion()">
 
     <label for="date">Datum:</label><br>
@@ -77,6 +78,6 @@
 
   <button type="submit" class="btn btn-primary">{{ transactionId === -1 ? 'Erstellen' : 'Aktualisieren' }}</button><br><br>
   <button (click)="deleteTransaction()" *ngIf="transactionId !== -1">Löschen</button>
-</form>
 
+</form>
 -->

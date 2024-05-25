@@ -32,6 +32,103 @@ export class TransactionFormComponent {
     private fb: FormBuilder
   ) {
     this.transactionForm = this.fb.group({
+      id: [null],
+      date: [null, Validators.required],
+      amount: [null, Validators.required],
+      description: [null, Validators.required],
+      recurring: [false, Validators.required],
+      category: [null, Validators.required],
+      account: [null, Validators.required]
+    });
+  }
+
+  ngOnInit(): void {
+    this.loadContent()
+    this.route.params.subscribe(params => {
+      this.accountId = +params['id'];
+      if (isNaN(this.accountId)) { this.accountId = -1; }
+      this.updateService.setAccountId(this.accountId);
+    })
+    this.transactionId = this.updateService.getEditId();
+    if(this.transactionId != -1){
+      this.loadTransaction(this.transactionId);
+    }
+  }
+
+  loadContent(){
+    this.accountService.getAll().subscribe(
+      (data => this.accounts = data));
+    this.categoryService.getAll().subscribe(
+      (data => this.categories = data ));
+  }
+
+  loadTransaction(id: number){
+    this.transactionService.getTransactionById(id).subscribe(
+      (data => this.transaction = data))
+  }
+
+  deleteTransaction() {
+    this.transactionService.deleteTransaction(this.transactionId)
+        .subscribe(() => {
+          this.router.navigate([`/transactions/${this.accountId}`]),
+          this.updateService.setEditId(-1);
+        });
+  }
+
+  saveTransaction() {
+    const formData = this.transactionForm.value;
+
+    const accountId = parseInt(formData.account)
+    const categoryId = parseInt(formData.category)
+    const account: Account = this.accounts.find(account => account.id === accountId)!
+    const category: Category = this.categories.find(category => category.id === categoryId)!
+
+
+    let transaction: Transaction = {
+      id: (this.accountId === -1 ? null : this.transactionId)!,
+      date: formData.date,
+      amount: formData.amount,
+      description: formData.description,
+      recurring: formData.recurring,
+      category,
+      account,
+    };
+
+    if (this.transactionId === -1) {
+      this.transactionService.createTransaction(transaction)
+        .subscribe(() => {
+          this.router.navigate([`/transactions/${this.accountId}`]),
+          this.updateService.setEditId(-1);
+        });
+    } else {
+      this.transactionService.updateTransaction(transaction)
+        .subscribe(() => {
+          this.router.navigate([`/transactions/${this.accountId}`]),
+          this.updateService.setEditId(-1);
+        });
+    }
+  }
+}
+
+/*
+export class TransactionFormComponent {
+  accountId: number = -1;
+  transactionId: number = -1;
+  transaction?: Transaction;
+  accounts: Account[] = [];
+  categories: Category[] = [];
+  transactionForm: FormGroup;
+
+  constructor(
+    private accountService: AccountService,
+    private transactionService: TransactionService,
+    private categoryService: CategoryService,
+    private updateService: UpdateService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private fb: FormBuilder
+  ) {
+    this.transactionForm = this.fb.group({
       date: [null, Validators.required],
       amount: [null, Validators.required],
       description: [null, Validators.required],
@@ -82,6 +179,7 @@ export class TransactionFormComponent {
     const account: Account = this.accounts.find(account => account.id === accountId)!
     const category: Category = this.categories.find(category => category.id === categoryId)!
 
+
     let transaction: Transaction = {
       id: (this.accountId === -1 ? null : this.transaction!.id)!,
       date: formData.date,
@@ -107,3 +205,6 @@ export class TransactionFormComponent {
     }
   }
 }
+
+
+*/

@@ -8,26 +8,26 @@ import { Debt } from '../../models/debt';
   providedIn: 'root'
 })
 export class DebtService {
-  baseUrl = "http://localhost:8080/depts"
+  baseUrl = "http://localhost:8080/debt"
   constructor(private httpClient: HttpClient) { }
 
   getAll(): Observable<Debt[]> {
     return this.httpClient.get<Debt[]>(`${this.baseUrl}`)
   }
 
-  getDepsById(id: number): Observable<Debt> {
+  getDebtById(id: number): Observable<Debt> {
     return this.httpClient.get<Debt>(`${this.baseUrl}/${id}`)
   }
 
-  createDept(depts: Debt): Observable<Debt> {
-    return this.httpClient.post<Debt>(`${this.baseUrl}`, depts)
+  createDebt(debt: Debt): Observable<Debt> {
+    return this.httpClient.post<Debt>(`${this.baseUrl}`, debt)
   }
 
-  updateDept(depts: Debt): Observable<Debt> {
-    return this.httpClient.put<Debt>(`${this.baseUrl}`, depts)
-  }
+  updateDebt(debt: Debt): Observable<Debt> {
+    return this.httpClient.put<Debt>(`${this.baseUrl}`, debt)
+  }  
 
-  deleteDept(id: number): Observable<void> {
+  deleteDebt(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.baseUrl}/${id}`)
   }
 }

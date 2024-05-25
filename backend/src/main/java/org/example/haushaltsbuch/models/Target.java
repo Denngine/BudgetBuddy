@@ -28,7 +28,7 @@ public class Target {
   private String name;
 
   @NotNull
-  private  double rate;
+  private double rate;
 
   @NotNull
   private char unit;
@@ -37,6 +37,5 @@ public class Target {
   private Date startDate;
 
   @NotNull
-  @PastOrPresent
   private Date endDate;
 }

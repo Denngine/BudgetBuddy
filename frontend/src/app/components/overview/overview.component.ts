@@ -16,8 +16,6 @@ export class OverviewComponent {
   accountId: number = -1;
   accounts: Account[] = [];
   categories: Category[] = [];
-  categoryId: number = -1;
-
 
   constructor(
     private accountService: AccountService,
@@ -34,7 +32,6 @@ export class OverviewComponent {
       if (isNaN(this.accountId)) {this.accountId = -1;}
       this.updateService.setAccountId(this.accountId);
     })
-
   }
 
   loadContent(){
@@ -62,6 +59,4 @@ export class OverviewComponent {
     this.updateService.setEditId(id);
     this.router.navigate([`/catform/${this.accountId}`]);
   }
-
-
 }

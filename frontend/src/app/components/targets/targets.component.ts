@@ -33,43 +33,43 @@ export class TargetsComponent {
     })
   }
 
-  loadTarget(){
-    this.targetService.getAll().subscribe(
-      (data => this.targets = data))
-  }
-
   loadDebt(){
     this.debtService.getAll().subscribe(
-      (data => this.debts = data))
+      data => this.debts = data)
   }
 
   postDebt(debt: Debt){
-    this.debtService.createDept(debt).subscribe(
-    (() => this.loadTarget()))
+    this.debtService.createDebt(debt).subscribe(
+    () => this.loadDebt())
   }
 
   putDebt(debt: Debt){
-    this.debtService.updateDept(debt).subscribe(
-    (() => this.loadTarget()))
+    this.debtService.updateDebt(debt).subscribe(
+    () => this.loadDebt())
   }
 
   deleteDebt(id: number){
-    this.debtService.deleteDept(id).subscribe(
-    (() => this.loadTarget()))
+    this.debtService.deleteDebt(id).subscribe(
+    () => this.loadDebt())
+  }
+
+  loadTarget(){
+    this.targetService.getAll().subscribe(
+      data => this.targets = data)
   }
 
   postTarget(target: Target) {
     this.targetService.createTarget(target).subscribe(
-      (data => this.loadTarget()))
+      data => this.loadTarget())
   }
 
   putTarget(target: Target) {
     this.targetService.updateTarget(target).subscribe(
-      (data => this.loadTarget()))
+      data => this.loadTarget())
   }
 
   deleteTarget(id: number) {
     this.targetService.deleteTarget(id).subscribe(
-      (data => this.loadTarget()))
+      data => this.loadTarget())
   }
 }

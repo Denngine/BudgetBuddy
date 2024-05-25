@@ -8,15 +8,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './target-form.component.html',
   styleUrl: './target-form.component.scss'
 })
-export class TargetFormComponent {
+export class TargetFormComponent  {
   @Input() targetList?: Target[];
   @Output() generateTarget: EventEmitter<Target> = new EventEmitter<Target>();
   @Output() updateTarget: EventEmitter<Target> = new EventEmitter<Target>();
   @Output() deleteTarget: EventEmitter<number> = new EventEmitter<number>();
-  addTargetForm: FormGroup;
+  targetForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
-    this.addTargetForm = this.fb.group({
+    this.targetForm = this.fb.group({
       id: [],
       name: [null, Validators.required],
       rate: [null, Validators.required],
@@ -26,49 +26,41 @@ export class TargetFormComponent {
     });
   }
 
-  saveTarget(target: Target | null) {
-    let newTarget: Target;
+  saveTarget(id?: number | null) {
+   let newTarget: Target;
     newTarget = {
-      id: target?.id,
-      name: this.addTargetForm.value.name,
-      rate: this.addTargetForm.value.rate,
-      unit: this.addTargetForm.value.unit,
-      startDate: this.addTargetForm.value.startDate,
-      endDate: this.addTargetForm.value.endDate
+      id: this.targetForm.value.id || null,
+      name: this.targetForm.value.name,
+      rate: this.targetForm.value.rate,
+      unit: this.targetForm.value.unit,
+      startDate: this.targetForm.value.startDate,
+      endDate: this.targetForm.value.endDate
     }
-    if(newTarget.id == null){
-      this.generateTarget.emit(newTarget);
-    } else {
+    if(id){
       this.updateTarget.emit(newTarget);
+    } else {
+      this.generateTarget.emit(newTarget);
     }
-    this.addTargetForm.reset();
+    this.targetForm.reset();
   }
 
-/*
-  saveTarget() {
-    const target = this.addTargetForm.value;
-    if (target.id) {
-      this.generateTarget.emit(target);
-    } else {
-      this.updateTarget.emit(target);
-    }
-    this.closeAddTargetForm();
-    this.addTargetForm.reset();
+  editTarget(target: Target){
+    this.targetForm.patchValue(target);
+    this.openTargetForm();
   }
-*/
 
   removeTarget(id: number) {
     this.deleteTarget.emit(id);
   }
 
-  openAddTargetForm() {
+  openTargetForm() {
     const modelDiv = document.getElementById('myModal');
     if(modelDiv!= null){
      modelDiv.style.display= 'block';
     }
   }
 
-  closeAddTargetForm() {
+  closeTargetForm() {
     const modelDiv =   document.getElementById('myModal');
     if(modelDiv!= null){
      modelDiv .style.display= 'none';

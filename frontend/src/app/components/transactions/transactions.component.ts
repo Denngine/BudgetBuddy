@@ -221,4 +221,3 @@ export class TransactionsComponent {
     this.router.navigate([`/traform/${this.accountId}`]);
   }
 }
-

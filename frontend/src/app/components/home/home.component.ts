@@ -29,13 +29,10 @@ export class HomeComponent {
       this.accountId = +params['id'];
       if (isNaN(this.accountId)) {this.accountId = -1;}
       this.updateService.setAccountId(this.accountId);
-      // lädt nach Auswahl eines neuen Kontos Transaktionen neu
       this.loadContent();
     })
   }
 
-  // Lädt alle Transaktionen und gibt alle aus, wenn die Auswahl die Gesamtübersicht ist,
-  // wenn nicht, wird nach dem Konto gefiltert und nur dessen Transaktionen werden ausgegeben
   loadContent(){
     this.accountService.getAll().subscribe(
       (data => this.accounts = data))
@@ -53,6 +50,7 @@ export class HomeComponent {
     }
     return Math.abs(totalExpenditure)
   }
+
   calculateTotalIncome(): number{
     let totalIncome = 0;
     for (let transaction of this.filteredTransactions) {
@@ -64,40 +62,27 @@ export class HomeComponent {
   }
 
   filterTransactions(data: Transaction[]): void {
-    // filteredTransactions wird leeres Array zugewiesen, um Liste der Transactions zu leeren,
-    // wenn eine neue Auswahl geschieht
     this.filteredTransactions = [];
     if(this.accountId == -1){
       this.filteredTransactions = data;
-      this.filterDate(this.filteredTransactions);
     }
     else {
       for (let transaction of data){
         if (transaction.account.id == this.accountId){
           this.filteredTransactions.push(transaction);
-          this.filterDate(this.filteredTransactions);
         }
       }
     }
-  }
-
-  filterDate(filteredTransactions: Transaction[]) {
-    const currentMonth = new Date().getMonth();
-    let result: Transaction[] = filteredTransactions.filter(entry => entry.date.getMonth() === currentMonth);
-    this.filteredTransactions = result;
-  }
-  formatDate(date: Date): string {
-    const options: Intl.DateTimeFormatOptions = { day: '2-digit', month: '2-digit', year: 'numeric' };
-    return date.toLocaleDateString('de-DE', options);
+    this.sortBy('date');
   }
 
   calculateBalance(): number {
     let balance = 0;
-    if (this.accountId === -1){                   //kontostand für Gesamtübersicht
+    if (this.accountId === -1){
       for(let account of this.accounts){
         balance += account.balance;
       }
-    } else {                             //kontostand für das ausgewählte Konto
+    } else {
       balance = (this.getAccountById(this.accountId)?.balance) ?? 0;
     }
     return balance;
@@ -111,6 +96,7 @@ export class HomeComponent {
     }
     return null;
   }
+
   sorted = { isSorted: false, attribute: "" };
   sortBy(attribute: string): void {
     switch (attribute) {
