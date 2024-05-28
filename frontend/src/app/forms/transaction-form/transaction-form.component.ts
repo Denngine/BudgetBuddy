@@ -63,14 +63,26 @@ export class TransactionFormComponent {
   }
 
   loadTransaction(id: number){
-    this.transactionService.getTransactionById(id).subscribe(
-      (data => this.transaction = data))
+    this.transactionService.getTransactionById(id).subscribe((data => {
+      this.transaction = data
+
+      const transactionDate = new Date(this.transaction.date)
+      const date = transactionDate.toISOString().split('T')[0]
+
+      this.transactionForm.controls['id'].setValue(this.transaction.id)
+      this.transactionForm.controls['date'].setValue(date)
+      this.transactionForm.controls['amount'].setValue(this.transaction.amount)
+      this.transactionForm.controls['description'].setValue(this.transaction.description)
+      this.transactionForm.controls['recurring'].setValue(this.transaction.recurring)
+      this.transactionForm.controls['category'].setValue(this.transaction.category.id)
+      this.transactionForm.controls['account'].setValue(this.transaction.account.id)
+    }))
   }
 
   deleteTransaction() {
     this.transactionService.deleteTransaction(this.transactionId)
         .subscribe(() => {
-          this.router.navigate([`/transactions/${this.accountId}`]),
+          this.router.navigate([`/transactions/${this.accountId}`]);
           this.updateService.setEditId(-1);
         });
   }
@@ -83,10 +95,11 @@ export class TransactionFormComponent {
     const account: Account = this.accounts.find(account => account.id === accountId)!
     const category: Category = this.categories.find(category => category.id === categoryId)!
 
+    console.log(formData)
 
     let transaction: Transaction = {
-      id: (this.accountId === -1 ? null : this.transactionId)!,
-      date: formData.date,
+      id: this.transactionId === -1 ? undefined : this.transactionId,
+      date: formData.date || new Date(),
       amount: formData.amount,
       description: formData.description,
       recurring: formData.recurring,
